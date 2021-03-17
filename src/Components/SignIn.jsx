@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@reach/router";
 import { signInWithGoogle } from "../firebase";
 import { auth } from "../firebase";
 
@@ -44,7 +44,7 @@ const SignIn = () => {
             className="my-1 p-1 w-full"
             name="userEmail"
             value = {email}
-            placeholder="E.g: faruq123@gmail.com"
+            placeholder="Podaj adres email"
             id="userEmail"
             onChange = {(event) => onChangeHandler(event)}
           />
@@ -56,7 +56,7 @@ const SignIn = () => {
             className="mt-1 mb-3 p-1 w-full"
             name="userPassword"
             value = {password}
-            placeholder="Your Password"
+            placeholder="Podaj haslo"
             id="userPassword"
             onChange = {(event) => onChangeHandler(event)}
           />

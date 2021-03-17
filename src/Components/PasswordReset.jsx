@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { auth } from "../firebase";
 import { UserContext } from "../providers/UserProvider";
-import { Link } from "react-router-dom";
+import { Link } from "@reach/router";
 
 const PasswordReset = () => {
   const [email, setEmail] = useState("");
@@ -53,7 +53,7 @@ const PasswordReset = () => {
             name="userEmail"
             id="userEmail"
             value={email}
-            placeholder="Input your email"
+            placeholder="Miejsce na Twoj email"
             onChange={onChangeHandler}
             className="mb-3 w-full px-1 py-2"
           />

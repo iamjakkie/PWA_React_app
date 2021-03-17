@@ -4,11 +4,13 @@ import "firebase/firestore";
 import { functions } from "firebase";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID
+  apiKey: "AIzaSyAxGa64pg5dX0vnzYw4lL8VQJ0rywLry8s",
+  authDomain: "pwa-learning-307723.firebaseapp.com",
+  projectId: "pwa-learning-307723",
+  storageBucket: "pwa-learning-307723.appspot.com",
+  messagingSenderId: "458264760969",
+  appId: "1:458264760969:web:6c4f9310e2745669566c58",
+  measurementId: "G-71TSSGGPMN",
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -34,7 +36,7 @@ export const generateUserDocument = async (user, additionalData) => {
         displayName,
         email,
         photoURL,
-        ...additionalData
+        ...additionalData,
       });
     } catch (error) {
       console.error("Error creating user document", error);
@@ -43,14 +45,14 @@ export const generateUserDocument = async (user, additionalData) => {
   return getUserDocument(user.uid);
 };
 
-const getUserDocument = async uid => {
+const getUserDocument = async (uid) => {
   if (!uid) return null;
   try {
     const userDocument = await firestore.doc(`users/${uid}`).get();
 
     return {
       uid,
-      ...userDocument.data()
+      ...userDocument.data(),
     };
   } catch (error) {
     console.error("Error fetching user", error);

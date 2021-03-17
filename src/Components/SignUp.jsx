@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@reach/router";
 import { auth, signInWithGoogle, generateUserDocument } from "../firebase";
 
 const SignUp = () => {
@@ -8,28 +8,22 @@ const SignUp = () => {
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState(null);
 
-  const createUserWithEmailAndPasswordHandler = async (
-    event,
-    email,
-    password
-  ) => {
+  const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
     event.preventDefault();
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-      generateUserDocument(user, { displayName });
-    } catch (error) {
-      setError("Error Signing up with email and password");
+    try{
+      const {user} = await auth.createUserWithEmailAndPassword(email, password);
+      generateUserDocument(user, {displayName});
     }
-
+    catch(error){
+      setError('Error Signing up with email and password');
+    }
+      
     setEmail("");
     setPassword("");
     setDisplayName("");
   };
 
-  const onChangeHandler = (event) => {
+  const onChangeHandler = event => {
     const { name, value } = event.currentTarget;
 
     if (name === "userEmail") {
@@ -59,9 +53,9 @@ const SignUp = () => {
             className="my-1 p-1 w-full "
             name="displayName"
             value={displayName}
-            placeholder="E.g: Faruq"
+            placeholder="Wyswietlana nazwa"
             id="displayName"
-            onChange={(event) => onChangeHandler(event)}
+            onChange={event => onChangeHandler(event)}
           />
           <label htmlFor="userEmail" className="block">
             Email:
@@ -71,9 +65,9 @@ const SignUp = () => {
             className="my-1 p-1 w-full"
             name="userEmail"
             value={email}
-            placeholder="E.g: faruq123@gmail.com"
+            placeholder="Miejsce na Twoj email"
             id="userEmail"
-            onChange={(event) => onChangeHandler(event)}
+            onChange={event => onChangeHandler(event)}
           />
           <label htmlFor="userPassword" className="block">
             Password:
@@ -83,13 +77,13 @@ const SignUp = () => {
             className="mt-1 mb-3 p-1 w-full"
             name="userPassword"
             value={password}
-            placeholder="Your Password"
+            placeholder="Miejsce na Twoje haslo"
             id="userPassword"
-            onChange={(event) => onChangeHandler(event)}
+            onChange={event => onChangeHandler(event)}
           />
           <button
             className="bg-green-400 hover:bg-green-500 w-full py-2 text-white"
-            onClick={(event) => {
+            onClick={event => {
               createUserWithEmailAndPasswordHandler(event, email, password);
             }}
           >
